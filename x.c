@@ -2063,6 +2063,31 @@ usage(void)
 void
 reload(int sig)
 {
+	Display *dpy;
+	char *resm;
+	XrmDatabase db;
+	ResourcePref *p;
+
+	if(!(dpy = XOpenDisplay(NULL)))
+		die("Can't open display\n");
+
+	XrmInitialize();
+	resm = XResourceManagerString(dpy);
+
+	db = XrmGetStringDatabase(resm);
+	for (p = resources; p < resources + LEN(resources); p++)
+		resource_load(db, p->name, p->type, p->dst);
+
+	/* colors, fonts */
+	xloadcols();
+	xunloadfonts();
+	xloadfonts(font, 0);
+
+	redraw();
+
+	/* triggers re-render if we're visible. */
+	ttywrite("\033[O", 3, 0);
+
 	signal(SIGUSR1, reload);
 }
 
