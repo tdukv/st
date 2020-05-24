@@ -2060,6 +2060,12 @@ usage(void)
 	    " [stty_args ...]\n", argv0, argv0);
 }
 
+void
+reload(int sig)
+{
+	signal(SIGUSR1, reload);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -2130,6 +2136,7 @@ run:
 	config_init();
 	cols = MAX(cols, 1);
 	rows = MAX(rows, 1);
+	signal(SIGUSR1, reload);
 	tnew(cols, rows);
 	xinit(cols, rows);
 	xsetenv();
