@@ -196,6 +196,11 @@ static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
 
+/* open URL */
+static char *openurlcmd[] = { "/bin/sh", "-c",
+			      "linkgrabber.sh",
+			      "externalpipe", NULL };
+
 /*
  * Color used to display font attributes when fontconfig selected a font which
  * doesn't match the ones requested.
@@ -239,6 +244,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+	{ TERMMOD,              XK_U,           externalpipe,   { .v = openurlcmd } },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 };
 
