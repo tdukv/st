@@ -144,7 +144,7 @@ static unsigned int defaultrcs = 256;
  * 6: steady bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorstyle = 1;
+static unsigned int cursorstyle = 2;
 
 /*
  * Default columns and rows numbers
