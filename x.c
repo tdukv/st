@@ -2101,9 +2101,6 @@ reload(int sig)
 
 	redraw();
 
-	/* triggers re-render if we're visible. */
-	ttywrite("\033[O", 3, 0);
-
 	signal(SIGUSR1, reload);
 }
 
