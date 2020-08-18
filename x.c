@@ -72,6 +72,7 @@ static void selpaste(const Arg *);
 static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
+static void togglealpha(const Arg *);
 static void ttysend(const Arg *);
 
 /* config.h for applying patches and the configuration. */
@@ -339,6 +340,15 @@ zoomreset(const Arg *arg)
 		larg.f = defaultfontsize;
 		zoomabs(&larg);
 	}
+}
+
+void
+togglealpha(const Arg *arg)
+{
+	alpha_en ^= 1;
+	xloadcols();
+	tfulldirt();
+	cresize(0, 0);
 }
 
 void
@@ -797,7 +807,7 @@ xloadcolor(int i, const char *name, Color *ncolor)
 void
 xloadalpha(void)
 {
-	float const usedAlpha = focused ? alpha : alphaUnf;
+	float const usedAlpha = alpha_en ? (focused ? alpha : alphaUnf) : 1.0f;
 	if (opt_alpha) alpha = strtof(opt_alpha, NULL);
 	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * usedAlpha);
 	dc.col[defaultbg].pixel &= 0x00FFFFFF;
