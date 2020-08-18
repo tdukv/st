@@ -2082,7 +2082,9 @@ reload(int sig)
 	xunloadfonts();
 	xloadfonts(font, 0);
 
+	cresize(0, 0);
 	redraw();
+	xhints();
 
 	signal(SIGUSR1, reload);
 }
