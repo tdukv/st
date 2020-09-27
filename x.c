@@ -345,7 +345,7 @@ zoomreset(const Arg *arg)
 void
 togglealpha(const Arg *arg)
 {
-	alpha_en ^= 1;
+	alpha_en = !alpha_en;
 	xloadcols();
 	tfulldirt();
 	cresize(0, 0);
