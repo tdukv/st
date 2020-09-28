@@ -352,17 +352,6 @@ togglealpha(const Arg *arg)
 }
 
 void
-togglealphasig(int sig)
-{
-	Arg larg;
-
-	togglealpha(&larg);
-	redraw();
-
-	signal(SIGUSR2, togglealphasig);
-}
-
-void
 ttysend(const Arg *arg)
 {
 	ttywrite(arg->s, strlen(arg->s), 1);
@@ -2199,7 +2188,6 @@ run:
 	rows = MAX(rows, 1);
 	defaultbg = MAX(LEN(colorname), 256);
 	signal(SIGUSR1, reload);
-	signal(SIGUSR2, togglealphasig);
 	tnew(cols, rows);
 	xinit(cols, rows);
 	xsetenv();
