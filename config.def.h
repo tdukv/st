@@ -204,6 +204,11 @@ static char *openurlcmd[] = { "/bin/sh", "-c",
 			      "linkgrabber.sh",
 			      "externalpipe", NULL };
 
+/* select program to open URL */
+static char *openurldmenu[] = { "/bin/sh", "-c",
+			      "linkgrabber_dmenu",
+			      "externalpipe", NULL };
+
 /*
  * Color used to display font attributes when fontconfig selected a font which
  * doesn't match the ones requested.
@@ -250,6 +255,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_U,           externalpipe,   {.v = openurlcmd } },
+	{ TERMMOD|MODKEY,       XK_U,           externalpipe,   {.v = openurldmenu } },
 	{ TERMMOD,              XK_T,           togglealpha,    {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
