@@ -201,12 +201,12 @@ static unsigned int mousebg = 0;
 
 /* open URL */
 static char *openurlcmd[] = { "/bin/sh", "-c",
-			      "linkgrabber.sh",
+			      "lnkgrbbrbrwsr",
 			      "externalpipe", NULL };
 
 /* select program to open URL */
 static char *openurldmenu[] = { "/bin/sh", "-c",
-			      "linkgrabber_dmenu",
+			      "lnkgrbbrdmnu",
 			      "externalpipe", NULL };
 
 /*
