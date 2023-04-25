@@ -2113,6 +2113,9 @@ reload(int sig)
 	redraw();
 	xhints();
 
+	XFlush(dpy);
+	XCloseDisplay(dpy);
+
 	signal(SIGUSR1, reload);
 }
 
